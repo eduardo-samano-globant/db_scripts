@@ -6,8 +6,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                withCredentials([string(credentialsId: 'vault-token', variable: 'VAULT-TOKEN')]) {
-                   echo $VAULT-TOKEN
+                withCredentials([string(credentialsId: 'vault-token', variable: 'VAULTTOKEN')]) {
+                   echo $VAULTTOKEN
                 }
             }
         }
