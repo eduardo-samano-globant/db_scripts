@@ -6,6 +6,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                withCredentials([string(credentialsId: 'local-vault', variable: 'myvar')]) {
+                   echo $myvar
+                }
             }
         }
         stage('Test') {
