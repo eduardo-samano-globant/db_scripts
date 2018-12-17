@@ -8,7 +8,7 @@ pipeline {
                 echo 'Building..'
                 withCredentials([string(credentialsId: 'ROOTTOKEN', variable: 'VAULTTOKEN')]) {
                     echo 'Testing token'
-                   echo $VAULTTOKEN
+                    echo '$VAULTTOKEN'
                 }
             }
         }
