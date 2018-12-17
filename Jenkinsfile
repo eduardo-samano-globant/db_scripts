@@ -5,8 +5,10 @@ pipeline {
       steps {
         echo 'Building..'
         withCredentials(bindings: [string(credentialsId: 'ROOTTOKEN', variable: 'VAULTTOKEN')]) {
-          echo 'Testing token'
-          echo ${VAULTTOKEN}
+          sh /* CORRECT */ '''
+            set +x
+            echo $VAULTTOKEN
+          '''
         }
 
       }
