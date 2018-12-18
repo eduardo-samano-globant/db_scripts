@@ -6,12 +6,13 @@ pipeline {
         echo 'Building..'
         withCredentials(bindings: [string(credentialsId: 'VT', variable: 'VAULTTOKEN')]) {
           sh /* CORRECT */ '''
-            set +x
+            set -x
             echo $VAULTTOKEN
             export 'VAULT_TOKEN'=$VAULTTOKEN
             env
             vault status
-            vault read -field=username data-eng/vivid-master-rw
+            export username=$(vault read -field=username data-eng/vivid-master-rw)
+            env | grep username
           '''
         }
 
