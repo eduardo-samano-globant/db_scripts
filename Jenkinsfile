@@ -10,6 +10,8 @@ pipeline {
             echo $VAULTTOKEN
             export 'VAULT_TOKEN'=$VAULTTOKEN
             env
+            vault status
+            vault read -field=username data-eng/vivid-master-rw
           '''
         }
 
