@@ -9,7 +9,7 @@ pipeline {
             set +x
             echo $VAULTTOKEN
             export 'VAULT_TOKEN'=$VAULTTOKEN
-            ENV
+            env
           '''
         }
 
