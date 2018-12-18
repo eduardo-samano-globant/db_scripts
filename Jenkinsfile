@@ -12,7 +12,10 @@ pipeline {
             env
             vault status
             export username=$(vault read -field=username data-eng/vivid-master-rw)
+            export password=$(vault read -field=password data-eng/vivid-master-rw)
             env | grep username
+            env | grep username
+            ls -l
           '''
         }
 
