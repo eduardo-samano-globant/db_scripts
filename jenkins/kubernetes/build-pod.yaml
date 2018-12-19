@@ -5,6 +5,7 @@ spec:
     - name: jnlp
       image: lalosam/jenkins-slave-mysql:3.1
       imagePullPolicy: Always
+      workingDir: /home/jenkins
       env:
         - name: "LC_ALL" 
           value: "en_US.UTF-8"
