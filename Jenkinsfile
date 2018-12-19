@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'jenkins-mysql'
+      label 'jenkins-mysql-percona'
       idleMinutes 10
       yamlFile 'jenkins/kubernetes/build-pod.yaml'
       defaultContainer 'jnlp'
