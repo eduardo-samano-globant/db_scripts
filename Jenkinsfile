@@ -4,9 +4,9 @@ pipeline {
         string(defaultValue:'', description: 'SCRIPT PATH', name: 'SCRIPT')
     }
   stages {
-    stage('Build') {
+    stage('Run script') {
       steps {
-        echo 'Building..'
+        echo 'Running..'
         withCredentials(bindings: [string(credentialsId: 'VT', variable: 'VAULTTOKEN')]) {
           sh """#!/bin/bash -xe
             echo \$VAULTTOKEN
@@ -24,16 +24,6 @@ pipeline {
           """
         }
 
-      }
-    }
-    stage('Test') {
-      steps {
-        echo 'Testing..'
-      }
-    }
-    stage('Deploy') {
-      steps {
-        echo 'Deploying....'
       }
     }
   }
