@@ -8,8 +8,7 @@ pipeline {
       steps {
         echo 'Building..'
         withCredentials(bindings: [string(credentialsId: 'VT', variable: 'VAULTTOKEN')]) {
-          sh /* CORRECT */ '''
-            set -x
+          sh '''#!/bin/bash -xe
             echo $VAULTTOKEN
             export 'VAULT_TOKEN'=$VAULTTOKEN
             env
