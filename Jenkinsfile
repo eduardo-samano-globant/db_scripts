@@ -8,20 +8,20 @@ pipeline {
       steps {
         echo 'Building..'
         withCredentials(bindings: [string(credentialsId: 'VT', variable: 'VAULTTOKEN')]) {
-          sh '''#!/bin/bash -xe
-            echo $VAULTTOKEN
-            export 'VAULT_TOKEN'=$VAULTTOKEN
+          sh """#!/bin/bash -xe
+            echo \$VAULTTOKEN
+            export 'VAULT_TOKEN'=\$VAULTTOKEN
             env
             vault status
-            export username=$(vault read -field=username data-eng/vivid-master-rw)
-            export password=$(vault read -field=password data-eng/vivid-master-rw)
+            export username=\$(vault read -field=username data-eng/vivid-master-rw)
+            export password=\$(vault read -field=password data-eng/vivid-master-rw)
             env | grep username
             env | grep password
-            mysql -u "$(vault read -field=username data-eng/vivid-master-rw)" -p"$(vault read -field=password data-eng/vivid-master-rw)" -h 10.231.8.25 -e "SELECT * FROM sys.sys_config";
+            mysql -u "\$(vault read -field=username data-eng/vivid-master-rw)" -p"\$(vault read -field=password data-eng/vivid-master-rw)" -h 10.231.8.25 -e "SELECT * FROM sys.sys_config";
             ls -l
             chmod +x -R .
-          '''
-          sh "./${params.SCRIPT}"
+            ./${params.SCRIPT}
+          """
         }
 
       }
