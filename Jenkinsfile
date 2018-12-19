@@ -1,10 +1,10 @@
 pipeline {
   agent {
     kubernetes {
-      label 'mysqlpercona'
+      label 'jenkins-mysql-slave3'
       idleMinutes 10
       yamlFile 'jenkins/kubernetes/build-pod.yaml'
-      defaultContainer 'mysqlpercona'
+      defaultContainer 'jnlp'
     }
   }
   parameters {
