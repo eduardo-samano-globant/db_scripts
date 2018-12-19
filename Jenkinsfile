@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'jenkins-mysql-slave3'
+      label 'jenkins-mysql'
       idleMinutes 10
       yamlFile 'jenkins/kubernetes/build-pod.yaml'
       defaultContainer 'jnlp'
