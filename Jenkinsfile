@@ -1,5 +1,12 @@
 pipeline {
-  agent any
+  agent {
+    kubernetes {
+      label 'mysqlpercona'
+      idleMinutes 10
+      yamlFile 'jenkins/kubernetes/build-pod.yaml'
+      defaultContainer 'mysqlpercona'
+    }
+  }
   parameters {
         string(defaultValue:'', description: 'SCRIPT PATH', name: 'SCRIPT')
     }
