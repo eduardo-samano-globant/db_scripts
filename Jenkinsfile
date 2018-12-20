@@ -11,7 +11,7 @@ pipeline {
   }
   environment {
         DB_USERNAME    = vault path: 'data-eng/vivid-master-rw', key: 'username', vaultUrl: 'http://10.231.8.25:8200', credentialsId: 'VAULTTOKEN'
-        DB_PASSWORD    = vault path: 'data-eng/vivid-master-rw', key: 'password', vaultUrl: 'http://10.231.8.25:8200', credentialsId: 'VAULTTOKEN'
+        MYSQL_PWD      = vault path: 'data-eng/vivid-master-rw', key: 'password', vaultUrl: 'http://10.231.8.25:8200', credentialsId: 'VAULTTOKEN'
   }
   parameters {
         string(defaultValue:'', description: 'SCRIPT PATH', name: 'SCRIPT')
@@ -20,7 +20,7 @@ pipeline {
     stage('Run script') {
       steps {
         echo 'Running..'
-        wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: env['DB_USERNAME'], var: 'SECRET'], [password: env['DB_PASSWORD'], var: 'SECRET']]]) {
+        wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: env['DB_USERNAME'], var: 'SECRET'], [password: env['MYSQL_PWD'], var: 'SECRET']]]) {
           sh """#!/bin/bash -xe
             env
             chmod +x -R .
