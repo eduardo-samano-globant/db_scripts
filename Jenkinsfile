@@ -7,6 +7,10 @@ pipeline {
       defaultContainer 'jnlp'
     }
   }
+  environment {
+        DB_USERNAME    = vault path: 'data-eng/vivid-master-rw', key: 'username', vaultUrl: 'http://10.231.8.25:8200', credentialsId: 'VAULTTOKEN'
+        DB_PASSWORD    = vault path: 'data-eng/vivid-master-rw', key: 'password', vaultUrl: 'http://10.231.8.25:8200', credentialsId: 'VAULTTOKEN'
+  }
   parameters {
         string(defaultValue:'', description: 'SCRIPT PATH', name: 'SCRIPT')
     }
