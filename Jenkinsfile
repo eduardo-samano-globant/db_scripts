@@ -15,15 +15,6 @@ pipeline {
     }
     parameters {
         string(defaultValue: '', description: 'SCRIPT PATH', name: 'SCRIPT')
-        activeChoiceParam('States') {
-            description('Select a state option')
-            filterable()
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script('["Sao Paulo", "Rio de Janeiro", "Parana:selected", "Acre"]')
-                fallbackScript('return ["ERROR"]')
-            }
-        }
     }
     stages {
         stage('Run script') {
