@@ -6,13 +6,6 @@ spec:
       image: lalosam/jenkins-slave-mysql:3.1
       imagePullPolicy: Always
       workingDir: /home/jenkins
-      env:
-        - name: "LC_ALL" 
-          value: "en_US.UTF-8"
-        - name: "LANG"
-          value: "en_US.UTF-8"
-        - name: "TZ"
-          value: "America/Chicago"
       resources:
         requests:
           memory: "1Gi"
