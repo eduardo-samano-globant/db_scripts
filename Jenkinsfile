@@ -15,6 +15,14 @@ pipeline {
   }
   parameters {
         string(defaultValue:'', description: 'SCRIPT PATH', name: 'SCRIPT')
+        activeChoiceParam('file') {
+          description('Select your Sctipt file')
+          choiceType('RADIO')
+          groovyScript {
+            script("return['aaa','bbb']")
+            fallbackScript('return ["error"]')
+          }
+        }
     }
   stages {
     stage('Run script') {
