@@ -19,23 +19,12 @@ pipeline {
       steps {
         echo 'Running..'
         wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: env['DB_USERNAME'], var: 'SECRET'], [password: env['DB_PASSWORD'], var: 'SECRET']]]) {
-          withCredentials(bindings: [string(credentialsId: 'VT', variable: 'VAULTTOKEN')]) {
-            sh """#!/bin/bash -xe
-              echo \$VAULTTOKEN
-              export 'VAULT_TOKEN'=\$VAULTTOKEN
-              env
-              vault status
-              export username=\$(vault read -field=username data-eng/vivid-master-rw)
-              export password=\$(vault read -field=password data-eng/vivid-master-rw)
-              env | grep username
-              env | grep password
-              mysql -u "\$(vault read -field=username data-eng/vivid-master-rw)" -p"\$(vault read -field=password data-eng/vivid-master-rw)" -h 10.231.8.25 -e "SELECT * FROM sys.sys_config";
-              ls -l
-              chmod +x -R .
-              cat ${params.SCRIPT}
-              ./${params.SCRIPT}
-            """
-          }
+          sh """#!/bin/bash -xe
+            env
+            chmod +x -R .
+            cat ${params.SCRIPT}
+            ./${params.SCRIPT}
+           """
         }
       }
     }
