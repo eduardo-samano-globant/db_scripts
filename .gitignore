@@ -60,3 +60,8 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+/.idea/
+.idea/db_scripts.iml
+.idea/encodings.xml
+.idea/modules.xml
+.idea/sbt.xml

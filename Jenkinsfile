@@ -15,12 +15,13 @@ pipeline {
     }
     parameters {
         string(defaultValue: '', description: 'SCRIPT PATH', name: 'SCRIPT')
-        activeChoiceParam('file') {
-            description('Select your Sctipt file')
-            choiceType('RADIO')
+        activeChoiceParam('States') {
+            description('Select a state option')
+            filterable()
+            choiceType('SINGLE_SELECT')
             groovyScript {
-                script("return['aaa','bbb']")
-                fallbackScript('return ["error"]')
+                script('["Sao Paulo", "Rio de Janeiro", "Parana:selected", "Acre"]')
+                fallbackScript('return ["ERROR"]')
             }
         }
     }
